@@ -1,5 +1,7 @@
 package com.example.factorypattern.Strategy.grade;
 
+import com.example.factorypattern.Strategy.GradeType;
+
 public class MajorGradeEvaluation implements GradeEvaluation{
 
     @Override
@@ -19,5 +21,10 @@ public class MajorGradeEvaluation implements GradeEvaluation{
         else
             grade ="F";
         return grade;
+    }
+
+    @Override
+    public GradeType getType() {
+        return GradeType.MAJOR;
     }
 }

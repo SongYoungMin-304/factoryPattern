@@ -5,6 +5,8 @@ import com.example.factorypattern.Strategy.grade.GradeEvaluation;
 import com.example.factorypattern.Strategy.grade.MajorGradeEvaluation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Student {
 
@@ -20,13 +22,19 @@ public class Student {
         this.studentName = studentName;
     }
 
-    public void addSubject(String name, int score, boolean majorCode){
-        Subject subject = new Subject();
+    public void addSubject(String name, int score, GradeType gradeType){
 
+        /* Subject subject = new Subject();
         subject.setName(name);
         subject.setScorePoint(score);
-        subject.setMajorCode(majorCode);
-        subjectList.add(subject);
+        subject.setMajorCode(majorCode);*/
+        subjectList.add(
+                new Subject.SubjectBuilder()
+                .name(name)
+                .scorePoint(score)
+                .majorCode(gradeType)
+                        .build()
+        );
     }
 
     public void showStudentScore(){
@@ -45,18 +53,30 @@ public class Student {
 
         GradeEvaluation[] gradeEvaluations = {new BasicGradeEvaluation(), new MajorGradeEvaluation()};
 
-        for(Subject s: subjectList){
+        List<GradeEvaluation> gradeList = new ArrayList<>();
+        gradeList.add(new BasicGradeEvaluation());
+        gradeList.add(new MajorGradeEvaluation());
+
+        subjectList.stream().forEach(
+                s -> {
+                    //gradeEvaluations[s.getMajorCode()].getGrade(s.getScorePoint());
+                    String grade = gradeList.stream().filter(o -> o.getType().equals(s.getGradeType())).findFirst().get().getGrade(s.getScorePoint());
+                    System.out.println("학생 : "+ studentName +"의" + s.getName() + " 과목 성적은 " + s.getScorePoint() +"점 이고, 학점은 " + grade +"입니다.");
+                }
+        );
+
+        /*for(Subject s: subjectList){
 
             String grade;
 
-            if(s.getMajorCode() == true){
+            if(s.getGradeType() == true){
                 grade = gradeEvaluations[MAJOR].getGrade(s.getScorePoint());
             }else{
                 grade = gradeEvaluations[BASIC].getGrade(s.getScorePoint());
             }
 
             System.out.println("학생 : "+ studentName +"의" + s.getName() + " 과목 성적은 " + s.getScorePoint() +"점 이고, 학점은 " + grade +"입니다.");
-        }
+        }*/
 
 
     }

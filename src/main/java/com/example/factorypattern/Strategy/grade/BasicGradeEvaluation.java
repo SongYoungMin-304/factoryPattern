@@ -1,6 +1,10 @@
 package com.example.factorypattern.Strategy.grade;
 
+import com.example.factorypattern.Strategy.GradeType;
+
 public class BasicGradeEvaluation implements GradeEvaluation{
+
+
 
     @Override
     public String getGrade(int score) {
@@ -20,5 +24,10 @@ public class BasicGradeEvaluation implements GradeEvaluation{
 
 
         return grade;
+    }
+
+    @Override
+    public GradeType getType() {
+        return GradeType.BASIC;
     }
 }
