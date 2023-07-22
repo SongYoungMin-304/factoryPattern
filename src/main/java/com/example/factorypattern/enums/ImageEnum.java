@@ -1,5 +1,5 @@
 package com.example.factorypattern.enums;
 
-public enum imageEnum {
+public enum ImageEnum {
     A, B
 }

@@ -3,14 +3,14 @@ package com.example.factorypattern.enums;
 import java.util.Arrays;
 import java.util.List;
 
-public enum imageEnumResize{
+public enum ImageEnumResize implements ImageInterface{
 
     A(Arrays.asList("11","22")),
     B(Arrays.asList("11","22"));
 
     private List<String> resizeList;
 
-    imageEnumResize(List<String> list) {
+    ImageEnumResize(List<String> list) {
         this.resizeList = list;
     }
 
@@ -20,5 +20,10 @@ public enum imageEnumResize{
 
     public void setResizeList(List<String> resizeList) {
         this.resizeList = resizeList;
+    }
+
+    @Override
+    public ImageEnumResize getType() {
+        return this;
     }
 }
