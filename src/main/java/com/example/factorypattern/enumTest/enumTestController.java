@@ -64,7 +64,7 @@ public class enumTestController {
 
     @RequestMapping("/test4/{type}")
     public void test2(@PathVariable String type){
-        if(ImageEnum.A.toString().equals(type)){
+/*        if(ImageEnum.A.toString().equals(type)){
             ImageEnumCopy copy = ImageEnumCopy.valueOf("A");
             List<String> copyList = copy.getCopyList();
             copyList.stream().forEach(o -> copy(o));
@@ -81,7 +81,7 @@ public class enumTestController {
             ImageEnumResize resize = ImageEnumResize.valueOf("B");
             List<String> resizeList = resize.getResizeList();
             resizeList.stream().forEach(o -> resize(o));
-        }
+        }*/
     }
 
     @RequestMapping("/test5/{type}")
@@ -117,23 +117,30 @@ public class enumTestController {
                 .ap4("ap4")
                 .build();
 
-        for(ImageEnumCopyV2 imageEnumCopy : ImageEnumCopyV2.values()){
-            if(ImageVo.getIsTrue(imageEnumCopy, imageVo)){
-                // resize는 하나의 targetImg 를 가지고 있고...
-                // copy 는 여러개의 targetImg 를 가지고 있어야 해서 리스트로 만들
-                List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, imageEnumCopy);
+
+        for(ImageEnumCopyV2 imageEnumCopyV2 : ImageEnumCopyV2.values()){
+            if(ImageVo.getIsTrue(imageEnumCopyV2, imageVo)){
+                List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, imageEnumCopyV2);
                 this.copyImage(copyParams);
             }
         }
-
-
         // resize는 imageUrl 하나로 관리하면 되니까 더 편함 ㅇㅇ
         for(ImageEnumResizeV2 imageEnumResizeV2 : ImageEnumResizeV2.values()){
             if(ImageVo.getIsTrue(imageEnumResizeV2, imageVo)){
-                ResizeParam resizeParam = ResizeParam.makeResize(imageVo, imageEnumResizeV2);
-                this.resizeImage(resizeParam);
+                List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, imageEnumResizeV2);
+                this.resizeImage(resizeParams);
             }
         }
+
+/*        for(ImageEnum imageEnum : ImageEnum.values()){
+            if(ImageVo.getIsTrue(imageEnum, imageVo)) {
+                List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, ImageEnumCopyV2.valueOf(imageEnum.name()));
+                this.copyImage(copyParams);
+
+                List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, ImageEnumResizeV2.valueOf(imageEnum.name()));
+                this.resizeImage(resizeParams);
+            }
+        }*/
 
 
 
@@ -151,16 +158,16 @@ public class enumTestController {
         );
     }
 
-    public void resizeImage(ResizeParam resizeParam){
+    public void resizeImage(List<ResizeParam> resizeParams){
         // 대상 이미지
-        log.info("resize test1 :" +resizeParam.getImgUrl());
-
-        resizeParam.getImageEnumResizeV2().getImageEnumDetailResizeV2s().stream()
-                        .forEach(o -> {
-                            log.info("resize test2 :"+o.getFlag());
-                            log.info("resize test2 :"+o.getWidth());
-                            log.info("resize test2 :"+o.getHeigth());
-                        });
+        resizeParams.stream().forEach(
+                o -> {
+                    log.info("Resize test1 :"+o.getImgUrl());
+                    log.info("Resize test2 :"+o.getImageEnumDetailResizeV2().getFlag());
+                    log.info("Resize test3 :"+o.getImageEnumDetailResizeV2().getWidth());
+                    log.info("Resize test4 :"+o.getImageEnumDetailResizeV2().getHeigth());
+                }
+        );
     }
     
 

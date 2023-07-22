@@ -3,7 +3,7 @@ package com.example.factorypattern.enums;
 import java.util.Arrays;
 import java.util.List;
 
-public enum ImageEnumCopy implements ImageInterface{
+public enum ImageEnumCopy{
 
     A(Arrays.asList("1","2","3","4","5")),
     B(Arrays.asList("1","2","3","4","5"));
@@ -22,8 +22,4 @@ public enum ImageEnumCopy implements ImageInterface{
         this.copyList = copyList;
     }
 
-    @Override
-    public ImageEnumResize getType() {
-        return null;
-    }
 }

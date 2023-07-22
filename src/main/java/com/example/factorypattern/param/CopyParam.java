@@ -24,7 +24,7 @@ public class CopyParam {
         imgEnumCopyV2.getImageEnumDetailCopyV2List().stream().forEach(
                 o -> copyParams.add(
                         CopyParam.builder()
-                                .imgUrl(ImageVo.getParam(imgEnumCopyV2, imageVo))
+                                .imgUrl(ImageVo.getParam(o, imageVo))
                                 .imageEnumDetailCopyV2(o)
                                 .build()
                 )

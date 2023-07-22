@@ -1,10 +1,7 @@
 package com.example.factorypattern.vo;
 
 
-import com.example.factorypattern.enums.ImageEnumCopyV2;
-import com.example.factorypattern.enums.ImageEnumDetailCopyV2;
-import com.example.factorypattern.enums.ImageEnumResizeV2;
-import com.example.factorypattern.enums.ImageInterface;
+import com.example.factorypattern.enums.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +24,7 @@ public class ImageVo {
     private String ap2;
     private String ap3;
     private String ap4;
+
 
     public static boolean getIsTrue(ImageEnumCopyV2 imgEnumCopy, ImageVo tp){
         String value = "";
@@ -60,32 +58,37 @@ public class ImageVo {
         }
     }
 
-
-    public static String getParam(ImageEnumCopyV2 imgEnumCopy, ImageVo tp){
+    public static boolean getIsTrue(ImageEnum imageEnum, ImageVo imageVo) {
         String value = "";
-        if(imgEnumCopy == ImageEnumCopyV2.P){
-            value = tp.getP();
+        if(imageEnum == ImageEnum.P){
+            value = imageVo.getP();
         }
-        if(imgEnumCopy == ImageEnumCopyV2.AP){
-            value = tp.getAp();
+        if(imageEnum == ImageEnum.AP){
+            value = imageVo.getAp();
         }
-        return value;
+
+        if(value.length() == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 
-    public static String getParam(ImageEnumDetailCopyV2 imgEnumDetailCopy, ImageVo tp){
+    public static String getParam(ImageEnumDetailCopyV2 imgEnumDetailCopy, ImageVo imageVo){
         String value = "";
         if(imgEnumDetailCopy == ImageEnumDetailCopyV2.P){
-            value = tp.getP();
+            value = imageVo.getP();
         }
         if(imgEnumDetailCopy == ImageEnumDetailCopyV2.L){
-            value = tp.getL();
+            value = imageVo.getL();
         }
         if(imgEnumDetailCopy == ImageEnumDetailCopyV2.AP){
-            value = tp.getAp();
+            value = imageVo.getAp();
         }
         if(imgEnumDetailCopy == ImageEnumDetailCopyV2.AL){
-            value = tp.getAl();
+            value = imageVo.getAl();
         }
+
         return value;
     }
 
@@ -94,9 +97,10 @@ public class ImageVo {
         if(imageEnumResizeV2 == ImageEnumResizeV2.P){
             value = imageVo.getP();
         }
-        if(imageEnumResizeV2 == ImageEnumResizeV2.AP){
+        /*if(imageEnumResizeV2 == ImageEnumResizeV2.AP){
             value = imageVo.getAp();
-        }
+        }*/
         return value;
     }
+
 }

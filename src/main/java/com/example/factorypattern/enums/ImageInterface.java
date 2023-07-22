@@ -1,7 +1,7 @@
 package com.example.factorypattern.enums;
 
-public interface ImageInterface<T> {
+public interface ImageInterface {
 
-    public T getType();
+    public Object getType();
 
 }

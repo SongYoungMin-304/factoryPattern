@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Getter
-public enum ImageEnumCopyV2 {
+public enum ImageEnumCopyV2{
     P(Arrays.asList(ImageEnumDetailCopyV2.P, ImageEnumDetailCopyV2.L)),
     AP(Arrays.asList(ImageEnumDetailCopyV2.AP, ImageEnumDetailCopyV2.AL));
 
