@@ -118,7 +118,7 @@ public class enumTestController {
                 .build();
 
 
-        for(ImageEnumCopyV2 imageEnumCopyV2 : ImageEnumCopyV2.values()){
+/*        for(ImageEnumCopyV2 imageEnumCopyV2 : ImageEnumCopyV2.values()){
             if(ImageVo.getIsTrue(imageEnumCopyV2, imageVo)){
                 List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, imageEnumCopyV2);
                 this.copyImage(copyParams);
@@ -130,17 +130,22 @@ public class enumTestController {
                 List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, imageEnumResizeV2);
                 this.resizeImage(resizeParams);
             }
-        }
-
-/*        for(ImageEnum imageEnum : ImageEnum.values()){
-            if(ImageVo.getIsTrue(imageEnum, imageVo)) {
-                List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, ImageEnumCopyV2.valueOf(imageEnum.name()));
-                this.copyImage(copyParams);
-
-                List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, ImageEnumResizeV2.valueOf(imageEnum.name()));
-                this.resizeImage(resizeParams);
-            }
         }*/
+
+        for(ImageEnum imageEnum : ImageEnum.values()){
+            if(ImageVo.getIsTrue(imageEnum, imageVo)) {
+
+                if(ImageEnumCopyV2.check(imageEnum.name()).isPresent()){
+                    List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, ImageEnumCopyV2.valueOf(imageEnum.name()));
+                    this.copyImage(copyParams);
+                }
+
+                if(ImageEnumResizeV2.check(imageEnum.name()).isPresent()){
+                    List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, ImageEnumResizeV2.valueOf(imageEnum.name()));
+                    this.resizeImage(resizeParams);
+                }
+            }
+        }
 
 
 

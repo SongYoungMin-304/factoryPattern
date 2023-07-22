@@ -31,9 +31,9 @@ public class ImageVo {
         if(imgEnumCopy == ImageEnumCopyV2.P){
             value = tp.getP();
         }
-        if(imgEnumCopy == ImageEnumCopyV2.AP){
+        /*if(imgEnumCopy == ImageEnumCopyV2.AP){
             value = tp.getAp();
-        }
+        }*/
 
         if(value.length() == 0){
             return false;
@@ -97,9 +97,9 @@ public class ImageVo {
         if(imageEnumResizeV2 == ImageEnumResizeV2.P){
             value = imageVo.getP();
         }
-        /*if(imageEnumResizeV2 == ImageEnumResizeV2.AP){
+        if(imageEnumResizeV2 == ImageEnumResizeV2.AP){
             value = imageVo.getAp();
-        }*/
+        }
         return value;
     }
 
