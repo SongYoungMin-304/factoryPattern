@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -131,6 +132,20 @@ public class enumTestController {
                 this.resizeImage(resizeParams);
             }
         }*/
+
+        //Arrays.asList()
+        Arrays.asList(ImageEnum.values()).stream().filter(o -> ImageVo.getIsTrue(o, imageVo)).forEach(d -> {
+
+            if(ImageEnumCopyV2.check(d.name()).isPresent()){
+                List<CopyParam> copyParams = CopyParam.makeCopy(imageVo, ImageEnumCopyV2.valueOf(d.name()));
+                this.copyImage(copyParams);
+            }
+
+            if(ImageEnumResizeV2.check(d.name()).isPresent()){
+                List<ResizeParam> resizeParams = ResizeParam.makeResize(imageVo, ImageEnumResizeV2.valueOf(d.name()));
+                this.resizeImage(resizeParams);
+            }
+        });
 
         for(ImageEnum imageEnum : ImageEnum.values()){
             if(ImageVo.getIsTrue(imageEnum, imageVo)) {
