@@ -6,8 +6,22 @@ import java.util.concurrent.*;
 public class App8 {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
-            System.out.println("hello " + Thread.currentThread().getName());
+            try {
+                System.out.println("d");
+
+                System.out.println("d22");
+                String s ="kk";
+                System.out.println(s);
+
+
+                Thread.sleep(10000L);
+                System.out.println("deee");
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return "hello";
         }).thenApply((s) -> {
             return s.toUpperCase();
@@ -19,10 +33,8 @@ public class App8 {
 
         //System.out.println(future.get());
 
-        future.get();
-
-        Thread.sleep(10000L);
-
+        System.out.println("start");
+        String s = future.get();
         System.out.println("end");
     }
 

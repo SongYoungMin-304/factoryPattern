@@ -15,9 +15,10 @@ public class App {
             }
         });
         thread.start();
+
         System.out.println("Hello" + Thread.currentThread().getName());
-        Thread.sleep(3000L);
-        thread.interrupt();
+        /*Thread.sleep(3000L);
+        thread.interrupt();*/
 
     }
 }

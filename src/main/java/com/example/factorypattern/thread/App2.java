@@ -12,12 +12,11 @@ public class App2 {
             }
         });
 
-        System.out.println("start");
-
         thread.start();
-        thread.join();
+        System.out.println("step1");
 
-        System.out.println("end");
+        thread.join();
+        System.out.println("step2");
 
 
     }
